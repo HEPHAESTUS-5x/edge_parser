@@ -83,9 +83,9 @@ public:
   }
 
 void on_message(const struct mosquitto_message *message) override {
-    if (message->payloadlen == 0) return;
+    if (message -> payloadlen == 0) return;
 
-    string raw_str((char *)(message->payload), message->payloadlen);
+    string raw_str((char *)(message -> payload), message -> payloadlen);
     
     try {
       json j_container = json::parse(raw_str);
