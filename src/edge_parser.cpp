@@ -174,12 +174,12 @@ void on_message(const struct mosquitto_message *message) override {
 
     out.clear();
     out["sample_index"] = current_sample[0];
-    out["X"] = current_sample[1];
-    out["Y"] = current_sample[2];
-    out["Z"] = current_sample[3];
-    out["SP"] = current_sample[4];
-    out["A"] = current_sample[5];
-    out["C"] = current_sample[6];
+    out[_params["state"][0]] = current_sample[1];
+    out[_params["state"][1]] = current_sample[2];
+    out[_params["state"][2]] = current_sample[3];
+    out[_params["state"][3]] = current_sample[4];
+    out[_params["state"][4]] = current_sample[5];
+    out[_params["state"][5]] = current_sample[6];
 
     out["state"] = {current_sample[1], current_sample[2], current_sample[3], current_sample[4], current_sample[5], current_sample[6]};
 
@@ -194,6 +194,7 @@ void on_message(const struct mosquitto_message *message) override {
     _params["silent"] = false;
     _params["QoS"] = 2;
     _params["topic"] = "#";
+    _params["state"] = {"X", "Y", "Z", "SP", "A", "C"};
     _params.merge_patch(params);
     
     setup();
