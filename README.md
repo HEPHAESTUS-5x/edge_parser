@@ -47,9 +47,14 @@ silent = false
 QoS = 2
 topic = "#"
 pub_topic = "edge"
+state = ["X", "Y", "Z", "SP", "A", "C"]
 ```
 
 All settings are optional; if omitted, the default values are used.
+
+The `state` option deserves special attention: it defines the names of the six fields that will be created in the output for the machine state values received from the Edge controller. This is useful because the machine can expose a different naming convention for the values it sends, and the user can customize those field names directly in `mads.ini` so that the plugin matches the actual machine data.
+
+For example, if the Edge controller sends state values that correspond to different labels for the machine axes or motion values, the user can simply change the `state` array to match those names. The plugin will then emit output fields such as `out["X"]`, `out["Y"]`, etc., or with the custom labels configured by the user, making the data easier to integrate with the rest of the MADS workflow.
 
 ## Usage
 This plugin is intended to receive data streamed from an Edge controller through MQTT and then parse it so it can be processed by MADS. To make this work correctly, the network must be configured properly before starting the data stream.
