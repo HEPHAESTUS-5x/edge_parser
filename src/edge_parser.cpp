@@ -181,6 +181,8 @@ void on_message(const struct mosquitto_message *message) override {
     out["A"] = current_sample[5];
     out["C"] = current_sample[6];
 
+    out["state"] = {current_sample[1], current_sample[2], current_sample[3], current_sample[4], current_sample[5], current_sample[6]};
+
     if (!_agent_id.empty()) out["agent_id"] = _agent_id;
     return return_type::success;
   }
