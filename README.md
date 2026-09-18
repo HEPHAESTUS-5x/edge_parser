@@ -74,6 +74,12 @@ This is important because the Edge controller is configured to communicate with 
 ### 2 - Start the MQTT broker
 The MQTT broker must be running and reachable from the Edge controller before any streaming is enabled. In most cases, this is done on the user's PC, either by installing a broker directly or by running a broker container such as Docker-based Mosquitto.
 
+When using Mosquitto with this plugin, start the broker with the custom `mosquitto.conf` file. Replace `/path/to/edge_parser` with the path to this repository on your computer:
+
+```bash
+sudo docker run -d --name mosquitto_broker -p 1883:1883 -v /path/to/edge_parser/mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto
+```
+
 Once the broker is active, it should be listening on the expected port, usually `1883` unless otherwise configured.
 
 ### 3 - Configure the Edge job for streaming
