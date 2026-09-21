@@ -48,6 +48,7 @@ QoS = 2
 topic = "#"
 pub_topic = "edge"
 state = ["X", "Y", "Z", "SP", "A", "C"]
+wire_format = "msgpack"
 ```
 
 All settings are optional; if omitted, the default values are used.
